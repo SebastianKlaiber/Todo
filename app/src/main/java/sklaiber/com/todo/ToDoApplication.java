@@ -6,18 +6,24 @@ import com.squareup.leakcanary.LeakCanary;
 
 import timber.log.Timber;
 
-/**
- * Created by Sebastian Klaiber on 09.06.2016.
- */
-
 public class ToDoApplication extends Application {
+
+    private AppComponent component;
 
     @Override
     public void onCreate() {
         super.onCreate();
+
         LeakCanary.install(this);
+
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
         }
+
+        component = DaggerAppComponent.builder().appModule(new AppModule()).build();
+    }
+
+    public AppComponent getComponent() {
+        return component;
     }
 }
