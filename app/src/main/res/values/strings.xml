@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Todo</string>
+    <string name="task_name_required_message">Task name is required.</string>
+    <string name="task_saved">Task saved</string>
+    <string name="task_not_found">Task not found</string>
+    <string name="save">Save Task</string>
 </resources>

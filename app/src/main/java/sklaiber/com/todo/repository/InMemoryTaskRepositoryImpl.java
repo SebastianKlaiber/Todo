@@ -3,6 +3,7 @@ package sklaiber.com.todo.repository;
 import sklaiber.com.todo.model.Task;
 
 public class InMemoryTaskRepositoryImpl implements TaskRepository {
+
     private Task t;
 
     /**
