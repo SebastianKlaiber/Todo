@@ -16,6 +16,10 @@ public class TaskPresenterImpl implements TaskPresenter {
 
     @Override
     public void loadTaskDetails() {
+        if (view == null) {
+            throw new ViewNotFoundException();
+        }
+
         int taskId = view.getTaskId();
         t = taskRepository.getTask(taskId);
 
