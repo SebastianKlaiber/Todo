@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import sklaiber.com.todo.R;
+import sklaiber.com.todo.view.fragment.NewTaskFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,5 +17,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        navigateToMainFragment();
+    }
+
+    private void navigateToMainFragment() {
+        NewTaskFragment f = NewTaskFragment.newInstance();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_content, f, NewTaskFragment.class.getSimpleName())
+                .commit();
     }
 }

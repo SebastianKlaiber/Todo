@@ -3,10 +3,10 @@ package sklaiber.com.todo;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import sklaiber.com.todo.view.fragment.TaskFragment;
+import sklaiber.com.todo.view.fragment.NewTaskFragment;
 
 @Singleton
 @Component(modules = { AppModule.class })
 public interface AppComponent {
-    void inject(TaskFragment target);
+    void inject(NewTaskFragment target);
 }

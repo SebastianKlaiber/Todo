@@ -4,4 +4,6 @@
     <string name="task_saved">Task saved</string>
     <string name="task_not_found">Task not found</string>
     <string name="save">Save Task</string>
+    <string name="new_task_task_description">Add Task Description</string>
+    <string name="new_task_task_name">Add Task Name</string>
 </resources>

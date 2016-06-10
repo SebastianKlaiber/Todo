@@ -12,22 +12,27 @@ import android.widget.Toast;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
 import sklaiber.com.todo.R;
 import sklaiber.com.todo.ToDoApplication;
 import sklaiber.com.todo.presentation.TaskPresenter;
 import sklaiber.com.todo.view.TaskView;
 
-public class TaskFragment extends Fragment implements TaskView {
+public class NewTaskFragment extends Fragment implements TaskView {
 
     @Inject TaskPresenter taskPresenter;
 
-    EditText mTaskName;
-    EditText mTaskDescription;
-    Button mTaskSave;
+    private EditText mTaskName;
+    private EditText mTaskDescription;
+    private Button mTaskSave;
 
     private static final String TASK_ID = "task_id";
 
-    public TaskFragment() {
+    public NewTaskFragment() {
+    }
+
+    public static NewTaskFragment newInstance() {
+        return new NewTaskFragment();
     }
 
     @Override
@@ -38,11 +43,19 @@ public class TaskFragment extends Fragment implements TaskView {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_main, container, false);
+        View v = inflater.inflate(R.layout.fragment_new_task, container, false);
 
-        mTaskName = (EditText) v.findViewById(R.id.task_name);
-        mTaskDescription = (EditText) v.findViewById(R.id.task_description);
-        mTaskSave = (Button) v.findViewById(R.id.task_save);
+        ButterKnife.bind(this, v);
+
+        mTaskName = (EditText) v.findViewById(R.id.new_task_task_name);
+        mTaskDescription = (EditText) v.findViewById(R.id.new_task_task_desc);
+
+        v.findViewById(R.id.task_save).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                taskPresenter.saveTask();
+            }
+        });
 
         return v;
     }
