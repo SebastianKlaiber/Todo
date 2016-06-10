@@ -6,7 +6,7 @@
 
 general:
     artifacts:
-        - /home/ubuntu/AndroidCI/app/build/outputs/apk/
+        - /home/ubuntu/Todo/app/build/outputs/apk/
 
 machine:
     environment:
