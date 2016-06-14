@@ -4,7 +4,7 @@
      android:viewportHeight="562"
      android:viewportWidth="562" >
      <path
-         android:name="v"
+         android:title="v"
          android:strokeColor="#000000"
          android:strokeWidth="2"
          android:fillColor="#0099CC"

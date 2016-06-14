@@ -26,7 +26,7 @@ public class TaskPresenterImpl implements TaskPresenter {
         if (t == null) {
             view.showTaskNotFoundMessage();
         } else {
-            view.displayName(t.getName());
+            view.displayName(t.getTitle());
             view.displayDescription(t.getDescription());
         }
     }
@@ -43,7 +43,7 @@ public class TaskPresenterImpl implements TaskPresenter {
             if (view.getName().trim().equals("") || view.getDescription().trim().equals("")) {
                 view.showTaskNameIsRequired();
             } else {
-                t.setName(view.getName());
+                t.setTitle(view.getName());
                 t.setDescription(view.getDescription());
                 taskRepository.save(t);
                 view.showTaskSavedMessage();

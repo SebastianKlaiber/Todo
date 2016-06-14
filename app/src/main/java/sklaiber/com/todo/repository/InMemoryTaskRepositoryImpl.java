@@ -20,7 +20,7 @@ public class InMemoryTaskRepositoryImpl implements TaskRepository {
         if (t == null) {
             t = new Task();
             t.setId(id);
-            t.setName("Name");
+            t.setTitle("Name");
             t.setDescription("Description");
         }
         return t;
@@ -37,7 +37,7 @@ public class InMemoryTaskRepositoryImpl implements TaskRepository {
             this.t = getTask(0);
         }
         this.t.setId(t.getId());
-        this.t.setName(t.getName());
+        this.t.setTitle(t.getTitle());
         this.t.setDescription(t.getDescription());
     }
 }

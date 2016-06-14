@@ -23,10 +23,10 @@ import static org.mockito.Mockito.when;
 
 public class PresenterTests {
 
-    TaskRepository mockTaskRepository;
-    TaskView mockView;
-    TaskPresenter presenter;
-    Task task;
+    private TaskRepository mockTaskRepository;
+    private TaskView mockView;
+    private TaskPresenter presenter;
+    private Task task;
 
     @Before
     public void setup() {
@@ -34,8 +34,8 @@ public class PresenterTests {
 
         task = new Task();
         task.setId(1);
-        task.setName("Mighty");
-        task.setDescription("Mouse");
+        task.setTitle("Title");
+        task.setDescription("Description");
         when(mockTaskRepository.getTask(anyInt())).thenReturn(task);
 
         mockView = mock(TaskView.class);
@@ -62,8 +62,8 @@ public class PresenterTests {
 
         // Verify view interactions
         verify(mockView, times(1)).getTaskId();
-        verify(mockView, times(1)).displayName("Mighty");
-        verify(mockView, times(1)).displayDescription("Mouse");
+        verify(mockView, times(1)).displayName("Title");
+        verify(mockView, times(1)).displayDescription("Description");
         verify(mockView, never()).showTaskNotFoundMessage();
     }
 
@@ -104,7 +104,7 @@ public class PresenterTests {
         verify(mockView, never()).getDescription();
         verify(mockView, times(1)).showTaskNameIsRequired();
 
-        // Now tell mockView to return a value for first name and an empty last name
+        // Now tell mockView to return a value for name and an empty description
         when(mockView.getName()).thenReturn("Foo");
         when(mockView.getDescription()).thenReturn("");
 
@@ -129,11 +129,11 @@ public class PresenterTests {
 
         presenter.saveTask();
 
-        // Called two more times in the saveUser call.
+        // Called two more times in the saveTask call.
         verify(mockView, times(2)).getName();
         verify(mockView, times(2)).getDescription();
 
-        assertThat(task.getName(), is("Foo"));
+        assertThat(task.getTitle(), is("Foo"));
         assertThat(task.getDescription(), is("Bar"));
 
         // Make sure the repository saved the task

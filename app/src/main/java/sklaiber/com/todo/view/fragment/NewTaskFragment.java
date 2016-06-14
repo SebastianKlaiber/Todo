@@ -2,13 +2,15 @@ package sklaiber.com.todo.view.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import javax.inject.Inject;
 
@@ -24,7 +26,7 @@ public class NewTaskFragment extends Fragment implements TaskView {
 
     private EditText mTaskName;
     private EditText mTaskDescription;
-    private Button mTaskSave;
+    FirebaseAnalytics mFirebaseAnalytics;
 
     private static final String TASK_ID = "task_id";
 
@@ -39,6 +41,7 @@ public class NewTaskFragment extends Fragment implements TaskView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((ToDoApplication)getActivity().getApplication()).getComponent().inject(this);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
     }
 
     @Override
@@ -54,6 +57,9 @@ public class NewTaskFragment extends Fragment implements TaskView {
             @Override
             public void onClick(View v) {
                 taskPresenter.saveTask();
+                Bundle bundle = new Bundle();
+                bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, mTaskName.getText().toString());
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
             }
         });
 
@@ -88,7 +94,7 @@ public class NewTaskFragment extends Fragment implements TaskView {
 
     @Override
     public void showTaskSavedMessage() {
-        Toast.makeText(getActivity(), R.string.task_saved, Toast.LENGTH_SHORT).show();
+        Snackbar.make(getView(), R.string.task_saved, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
