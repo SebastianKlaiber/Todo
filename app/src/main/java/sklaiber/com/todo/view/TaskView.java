@@ -3,14 +3,14 @@ package sklaiber.com.todo.view;
 public interface TaskView {
     int getTaskId();
 
-    void displayName(String name);
+    void displayTitle(String name);
     void displayDescription(String description);
 
     void showTaskNotFoundMessage();
     void showTaskSavedMessage();
 
-    String getName();
+    String getTitle();
     String getDescription();
 
-    void showTaskNameIsRequired();
+    void showTaskTitleIsRequired();
 }

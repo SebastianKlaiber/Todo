@@ -62,7 +62,7 @@ public class PresenterTests {
 
         // Verify view interactions
         verify(mockView, times(1)).getTaskId();
-        verify(mockView, times(1)).displayName("Title");
+        verify(mockView, times(1)).displayTitle("Title");
         verify(mockView, times(1)).displayDescription("Description");
         verify(mockView, never()).showTaskNotFoundMessage();
     }
@@ -82,7 +82,7 @@ public class PresenterTests {
         // verify view interactions
         verify(mockView, times(1)).getTaskId();
         verify(mockView, times(1)).showTaskNotFoundMessage();
-        verify(mockView, never()).displayName(anyString());
+        verify(mockView, never()).displayTitle(anyString());
         verify(mockView, never()).displayDescription(anyString());
     }
 
@@ -96,23 +96,23 @@ public class PresenterTests {
         verify(mockView, times(1)).getTaskId();
 
         // Set up the view mock
-        when(mockView.getName()).thenReturn(""); // empty string
+        when(mockView.getTitle()).thenReturn(""); // empty string
 
         presenter.saveTask();
 
-        verify(mockView, times(1)).getName();
+        verify(mockView, times(1)).getTitle();
         verify(mockView, never()).getDescription();
-        verify(mockView, times(1)).showTaskNameIsRequired();
+        verify(mockView, times(1)).showTaskTitleIsRequired();
 
         // Now tell mockView to return a value for name and an empty description
-        when(mockView.getName()).thenReturn("Foo");
+        when(mockView.getTitle()).thenReturn("Foo");
         when(mockView.getDescription()).thenReturn("");
 
         presenter.saveTask();
 
-        verify(mockView, times(2)).getName(); // Called two times now, once before, and once now
+        verify(mockView, times(2)).getTitle(); // Called two times now, once before, and once now
         verify(mockView, times(1)).getDescription();  // Only called once
-        verify(mockView, times(2)).showTaskNameIsRequired(); // Called two times now, once before and once now
+        verify(mockView, times(2)).showTaskTitleIsRequired(); // Called two times now, once before and once now
     }
 
     @Test
@@ -124,13 +124,13 @@ public class PresenterTests {
 
         verify(mockView, times(1)).getTaskId();
 
-        when(mockView.getName()).thenReturn("Foo");
+        when(mockView.getTitle()).thenReturn("Foo");
         when(mockView.getDescription()).thenReturn("Bar");
 
         presenter.saveTask();
 
         // Called two more times in the saveTask call.
-        verify(mockView, times(2)).getName();
+        verify(mockView, times(2)).getTitle();
         verify(mockView, times(2)).getDescription();
 
         assertThat(task.getTitle(), is("Foo"));
@@ -147,7 +147,7 @@ public class PresenterTests {
     public void shouldLoadTaskDetailsWhenTheViewIsSet() {
         presenter.setView(mockView);
         verify(mockTaskRepository, times(1)).getTask(anyInt());
-        verify(mockView, times(1)).displayName(anyString());
+        verify(mockView, times(1)).displayTitle(anyString());
         verify(mockView, times(1)).displayDescription(anyString());
     }
 

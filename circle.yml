@@ -17,7 +17,7 @@ machine:
 dependencies:
     pre:
         - chmod +x ./gradlew
-        - echo y | android update sdk --no-ui --all --filter tools,platform-tools,extra-google-m2repository,extra-google-google_play_services,extra-android-support,android-23
+        - echo y | android update sdk --no-ui --all --filter tools,platform-tools,extra-google-m2repository,extra-google-google_play_services,extra-android-support,android-23,com.android.support.constraint:constraint-layout:1.0.0-alpha3,com.android.support.constraint:constraint-layout-solver:1.0.0-alpha3
         - echo y | android update sdk --no-ui --all --filter build-tools-23.0.3
     cache_directories:
         - /usr/local/android-sdk-linux/tools

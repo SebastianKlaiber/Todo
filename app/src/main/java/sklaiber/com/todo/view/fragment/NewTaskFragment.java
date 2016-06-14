@@ -78,7 +78,7 @@ public class NewTaskFragment extends Fragment implements TaskView {
     }
 
     @Override
-    public void displayName(String name) {
+    public void displayTitle(String name) {
         mTaskName.setText(name);
     }
 
@@ -98,7 +98,7 @@ public class NewTaskFragment extends Fragment implements TaskView {
     }
 
     @Override
-    public String getName() {
+    public String getTitle() {
         return mTaskName.getText().toString();
     }
 
@@ -108,7 +108,7 @@ public class NewTaskFragment extends Fragment implements TaskView {
     }
 
     @Override
-    public void showTaskNameIsRequired() {
+    public void showTaskTitleIsRequired() {
         Toast.makeText(getActivity(), R.string.task_name_required_message, Toast.LENGTH_SHORT).show();
     }
 }
